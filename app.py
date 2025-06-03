@@ -58,7 +58,7 @@ server = app.server
 map_center = [data_df["latitude"].mean(), data_df["longitude"].mean()]
 
 app.layout = html.Div([
-    html.H2("Device Route Tracker"),
+    html.H2("Lacuna Space Tracker Demo"),
     dl.Map(center=map_center, zoom=12, id="live-map", style={'width': '100%', 'height': '90vh'}, children=[
         dl.TileLayer(),
         dl.LayerGroup(id="marker-layer")
