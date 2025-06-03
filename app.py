@@ -51,7 +51,8 @@ data_df = load_all_data()
 # Create Dash App
 # -------------------------
 app = dash.Dash(__name__)
-app.title = "Device Tracker"
+app.title = "LS300 Tracker Demo"
+server = app.server
 
 # Map centre (you can make this dynamic later)
 map_center = [data_df["latitude"].mean(), data_df["longitude"].mean()]

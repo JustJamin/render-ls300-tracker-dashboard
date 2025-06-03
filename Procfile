@@ -1,2 +1,2 @@
-web: gunicorn app:tracker_map
+web: gunicorn app:server
 
