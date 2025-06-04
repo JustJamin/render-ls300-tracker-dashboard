@@ -195,6 +195,10 @@ def update_map(n):
         data_df.drop_duplicates(subset=["device", "time"], inplace=True)
         data_df.sort_values(by=["device", "time"], inplace=True)
 
+    # Filter to only include devices starting with "satellite"
+    # To disable this filter, comment out the following line
+    data_df = data_df[data_df["device"].str.startswith("satellite")]
+
     global device_colors  # ensure we’re modifying the global mapping
 
     # Assign colors only to new devices
