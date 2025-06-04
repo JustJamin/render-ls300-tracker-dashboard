@@ -60,7 +60,7 @@ data_df = load_all_data()
 
 # Assign a unique color per device
 device_colors = {}
-color_palette = ["red", "blue", "green", "purple", "orange", "pink", "magenta", "cyan", "lime", "yellow"]
+color_palette = ["red", "blue", "green", "purple", "yellow", "orange", "pink", "magenta", "cyan", "lime"]
 
 # -------------------------
 # Create Dash App
@@ -112,6 +112,16 @@ app.layout = html.Div(
         "fontFamily": "Ubuntu"
     },
     children = [
+        html.Img(
+            src="/assets/logo.png",
+            style={
+                "position": "absolute",
+                "top": "10px",
+                "right": "10px",
+                "height": "120px",
+                "zIndex": "999"
+            }
+        ),
         html.H2("Lacuna Space Tracker Demo",
             style={
                 "fontSize": "3em",  # Increase size as desired
@@ -182,6 +192,8 @@ def update_map(n):
         new_df = new_df.rename(columns={"_time": "time"})
         new_df["time"] = pd.to_datetime(new_df["time"])
         data_df = pd.concat([data_df, new_df], ignore_index=True)
+        data_df.drop_duplicates(subset=["device", "time"], inplace=True)
+        data_df.sort_values(by=["device", "time"], inplace=True)
 
     global device_colors  # ensure we’re modifying the global mapping
 
